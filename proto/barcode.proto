@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+option go_package = "pkg/barcodev1";
+
+service BarcodeService {
+    rpc ScanBarcodes(ImageRequest) returns (ScanBarcodesResponse);
+}
+
+message Image {
+    bytes data = 1;
+}
+
+message ImageRequest {
+    Image image = 1;
+}
+
+message Barcode {
+    string text        = 1;
+    Format format      = 2;
+    string contentType = 3;
+    Position postiion  = 4;
+}
+
+enum Format {
+    FORMAT_NONE            = 0;
+    FORMAT_AZTEC           = 1;
+    FORMAT_CODABAR         = 2;
+    FORMAT_CODE39          = 3;
+    FORMAT_CODE93          = 4;
+    FORMAT_CODE128         = 5;
+    FORMAT_DATABAR         = 6;
+    FORMAT_DATABAREXPANDED = 7;
+    FORMAT_DATAMATRIX      = 8;
+    FORMAT_EAN8            = 9;
+    FORMAT_EAN13           = 10;
+    FORMAT_ITF             = 11;
+    FORMAT_MAXICODE        = 12;
+    FORMAT_PDF417          = 13;
+    FORMAT_QRCODE          = 14;
+    FORMAT_UPCA            = 15;
+    FORMAT_UPCE            = 16;
+    FORMAT_MICROQRCODE     = 17;
+    FORMAT_RMQRCODE        = 18;
+    FORMAT_DXFILMEDGE      = 19;
+    FORMAT_DATABARLIMITED  = 20;
+}
+
+enum ContentType {
+    UNKNOWN_CONTENT_TYPE = 0;
+    TEXT                 = 1;
+    BINARY               = 2;
+    MIXED                = 3;
+    GS1                  = 4;
+    ISO15434             = 5;
+    UNKNOWN_ECI          = 6;
+}
+
+message Position {
+    Point p1 = 1;
+    Point p2 = 2;
+    Point p3 = 3;
+    Point p4 = 4;
+}
+
+message Point {
+    int32 x = 1;
+    int32 y = 2;
+}
+
+message ScanBarcodesResponse {
+    repeated Barcode barcodes = 1;
+}
