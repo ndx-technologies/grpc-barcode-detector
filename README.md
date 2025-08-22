@@ -1,8 +1,8 @@
-This service provides barcode functions
+## gRPC barcode detector
 
-This is `gRPC` c++ server based on `zxing-cpp`.
+This is gRPC C++ server based on `zxing-cpp`.
 It is instrumented with OpenTelemetry with GCP Tracing format.
-This service provides `gRPC` based Go client.
+gRPC Go client is also provided.
 
 ## References 
 
